@@ -5,7 +5,7 @@ import CountUp from "react-countup";
 HighlightCard.propTypes = {};
 const useStyles = makeStyles({
     wrapper: props => {
-        console.log({props});
+        // console.log({props});
         if (props.type === 'confirmed') return {borderLeft: '10px solid red'};
         if (props.type === 'recovered') return {borderLeft: '10px solid green'};
         else return {borderLeft: '10px solid black'};

@@ -55,7 +55,7 @@ LineChart.propTypes = {};
 
 function LineChart(props) {
     const {data} = props;
-    console.log({data})
+    // console.log({data})
     const [options, setOptions] = useState({});
     const [reportType, setReportType] = useState('all');
 

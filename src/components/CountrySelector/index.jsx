@@ -6,6 +6,7 @@ const countryList = (countries) => {
         return {
             value: country.Slug,
             label: country.Country,
+            mapId: country.ISO2.toLowerCase(),
         }
     });
 }

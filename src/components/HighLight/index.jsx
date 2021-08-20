@@ -8,7 +8,7 @@ Highlight.propTypes = {
 
 function Highlight(props) {
     const {summary} = props
-    console.log("summary", summary);
+    // console.log("summary", summary);
     return (
         <Grid container spacing={3} style={{marginTop: 10}}>
             {summary.map((data) => (

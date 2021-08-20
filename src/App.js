@@ -14,11 +14,12 @@ function App() {
     const [countries, setCountries] = useState([]);
     const [report, setReport] = useState([]);
     const [selectedCountryId, setSelectedCountryId] = useState('vietnam');
-
+    const [mapId, setMapId] = useState('vn');
     useEffect(() => {
         const fetchReport = async () => {
             const res = await covidApi.getCountries()
             setCountries(res);
+            // console.log(res)
         }
         fetchReport();
     }, [])
@@ -26,7 +27,7 @@ function App() {
     useEffect(() => {
         const fetchReportByCountry = async () => {
             const res = await covidApi.getReportByCountry(selectedCountryId)
-            console.log('repost of country:', res)
+            // console.log('repost of country:', res)
             setReport(res);
         }
         fetchReportByCountry();
@@ -35,7 +36,7 @@ function App() {
     const summary = useMemo(() => {
         if (report && report.length) {
             const latestData = report[report.length - 2];
-            console.log({latestData})
+            // console.log({latestData})
             return [
                 {
                     title: 'Số ca nhiễm',
@@ -43,7 +44,7 @@ function App() {
                     type: 'confirmed',
                 },
                 {
-                    title: 'hien tai ',
+                    title: 'Hiện tại ',
                     count: latestData.Active,
                     type: 'recovered',
                 },
@@ -58,10 +59,11 @@ function App() {
     }, [report]);
 
     const handleChange = (country) => {
-        console.log("seleted in app", country)
         setSelectedCountryId(country.value)
+        console.log({country});
+        setMapId(country.mapId);
     }
-    console.log('load app');
+    // console.log('load app');
     return (
         <Container>
             <Typography variant={'h2'} component={"h2"}>
@@ -74,10 +76,9 @@ function App() {
                 value={selectedCountryId}
                 countries={countries}
                 onChangeCountry={handleChange}
-
             />
             <Highlight summary={summary}/>
-            <Summary countryId={selectedCountryId} report={report}/>
+            <Summary countryId={mapId} report={report}/>
         </Container>
     );
 }
